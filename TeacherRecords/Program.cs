@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TeacherRecords
-{    
+{
     class Teacher
     {
 
@@ -18,21 +18,8 @@ namespace TeacherRecords
         public string name { get; set; }
         public string cla { get; set; }
         public string section { get; set; }
-        
+
         public static string teacherFile = @"C:\Users\pvsriso\Documents\FSD\TeacherFile.txt";
-
-        public Teacher()
-        {
-        }
-
-        public Teacher(int id, string name, string cla, string section)
-        {
-            this.id = id;
-            this.name = name;
-            this.cla = cla;
-            this.section = section;
-
-        }
 
         public static string getTeacherRecordbById(int teacherid)
         {
@@ -55,9 +42,9 @@ namespace TeacherRecords
 
         public static void showTeacherRecordById(int teacherid)
         {
-           
+
             string teacherRecord = getTeacherRecordbById(teacherid);
-            if(teacherRecord != null)
+            if (teacherRecord != null)
             {
                 string[] teacher = teacherRecord.Split(',');
                 Console.WriteLine("Teacher id: " + teacher[0]);
@@ -73,35 +60,45 @@ namespace TeacherRecords
 
         public void AddTeacherRecord()
         {
-            int tempid; 
+            int tempid;
             Console.WriteLine("Enter Teacher ID ");
-            tempid = Convert.ToInt32(Console.ReadLine());
-            if(getTeacherRecordbById(tempid) == null)
+            try
             {
-                this.id = tempid;
+                tempid = Convert.ToInt32(Console.ReadLine());
+
+                if (getTeacherRecordbById(tempid) == null)
+                {
+                    this.id = tempid;
+                }
+                else
+                {
+                    Console.WriteLine("Teacher record exist with this id");
+                    return;
+                }
+
+                Console.WriteLine("Enter Teacher Name ");
+                this.name = Console.ReadLine();
+
+                Console.WriteLine("Enter Teacher cla ");
+                this.cla = Console.ReadLine();
+
+                Console.WriteLine("Enter Teacher section ");
+                this.section = Console.ReadLine();
+
+                this.AddRecordInFile();
             }
-            else
+            catch
             {
-                Console.WriteLine("Teacher record exist with this id");
-                return;
+                Console.WriteLine("Invalid input");
             }
-     
-            Console.WriteLine("Enter Teacher Name ");
-            this.name = Console.ReadLine();       
+            
+            
 
-            Console.WriteLine("Enter Teacher cla ");
-            this.cla = Console.ReadLine();         
-
-            Console.WriteLine("Enter Teacher section ");
-            this.section = Console.ReadLine();
-
-            this.AddRecordInFile();
-          
         }
 
         public override string ToString()
         {
-            string teacherRecord = this.id.ToString().Trim() + "," + this.name.Trim() + "," + this.cla.Trim() + "," + this.section.Trim();// + Environment.NewLine;
+            string teacherRecord = this.id.ToString().Trim() + "," + this.name.Trim() + "," + this.cla.Trim() + "," + this.section.Trim() + Environment.NewLine;
             return teacherRecord;
         }
 
@@ -110,7 +107,7 @@ namespace TeacherRecords
             File.AppendAllText(teacherFile, this.ToString());
         }
 
-      
+
 
         public static void updateTeacherRecordById(int teacherid)
         {
@@ -130,7 +127,7 @@ namespace TeacherRecords
 
             Console.Write("Enter new Name(Press Enter if don't want to update):");
             newteacher.name = Console.ReadLine();
-            if(String.IsNullOrEmpty(newteacher.name))
+            if (String.IsNullOrEmpty(newteacher.name))
             {
                 newteacher.name = teacher[1];
             }
@@ -150,7 +147,7 @@ namespace TeacherRecords
             }
 
             string text = File.ReadAllText(teacherFile);
-            text = text.Replace(teacherRecord, newteacher.ToString());
+            text = text.Replace(teacherRecord, newteacher.ToString().Trim());
             File.WriteAllText(teacherFile, text);
 
         }
@@ -165,10 +162,10 @@ namespace TeacherRecords
             }
 
             string text = File.ReadAllText(teacherFile);
-            text = text.Replace(teacherRecord + "\r\n","");
+            text = text.Replace(teacherRecord + "\r\n", "");
             File.WriteAllText(teacherFile, text);
         }
-        
+
         public static void showAllTeacherRecords()
         {
             string line = null;
@@ -199,8 +196,8 @@ namespace TeacherRecords
             int wrongInputCounter = 0;
             int choice;
             int teacherid;
-            
-            while(true)
+
+            while (true)
             {
                 Console.WriteLine("===========================================");
                 Console.WriteLine("1.Add Teacher Record");
@@ -220,7 +217,7 @@ namespace TeacherRecords
                     Console.WriteLine("Invalid input");
                     continue;
                 }
-                switch(choice)
+                switch (choice)
                 {
                     case 1:
                         Teacher t1 = new Teacher();
@@ -250,7 +247,7 @@ namespace TeacherRecords
                     default:
                         wrongInputCounter++;
                         Console.WriteLine("Invalid input. 2 more chances to try");
-                        if(wrongInputCounter > 3)
+                        if (wrongInputCounter > 3)
                         {
                             Console.WriteLine("Maxmimum invalid inputs");
                             Environment.Exit(0);
@@ -259,8 +256,8 @@ namespace TeacherRecords
                 }
 
             }
-           
-          
+
+
         }
     }
 }
