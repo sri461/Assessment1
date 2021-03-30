@@ -1,0 +1,7 @@
+C:\Users\pvsriso\source\repos\Assessment1\TeacherRecords\bin\Debug\TeacherRecords.exe.config
+C:\Users\pvsriso\source\repos\Assessment1\TeacherRecords\bin\Debug\TeacherRecords.exe
+C:\Users\pvsriso\source\repos\Assessment1\TeacherRecords\bin\Debug\TeacherRecords.pdb
+C:\Users\pvsriso\source\repos\Assessment1\TeacherRecords\obj\Debug\TeacherRecords.csprojAssemblyReference.cache
+C:\Users\pvsriso\source\repos\Assessment1\TeacherRecords\obj\Debug\TeacherRecords.csproj.CoreCompileInputs.cache
+C:\Users\pvsriso\source\repos\Assessment1\TeacherRecords\obj\Debug\TeacherRecords.exe
+C:\Users\pvsriso\source\repos\Assessment1\TeacherRecords\obj\Debug\TeacherRecords.pdb
